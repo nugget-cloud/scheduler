@@ -1,67 +1,49 @@
 SimpleScheduler
 
-SimpleScheduler is a rudimentary simulation of an OS scheduler that utilizes a round-robin scheduling approach, coupled with support for priority-based scheduling. Built in C, it allows the user to submit processes with or without a given priority.
-Features:
+SimpleScheduler is a rudimentary simulation of an OS scheduler that employs a round-robin scheduling approach with an option for priority-based scheduling. Written in C, this shell-like interface allows users to submit processes with or without specified priorities.
+Features
 
-    Basic Round-Robin Scheduling: Processes are added to the end of a queue and are run in a cyclic order.
-    Priority-Based Scheduling: Processes can be given a priority, affecting their scheduling.
-    Real-time Statistics: On termination, the shell provides statistics such as name, PID, execution time, and wait time for all jobs.
-    Dynamic Code Integration: Users can incorporate their executables into the SimpleShell with minimal modifications, thanks to the provided dummy_main.h.
+Round-Robin Scheduling: Processes are enqueued and run in a cyclic order.
+Priority-Based Scheduling: Support for submitting processes with distinct priorities.
+Real-time Statistics: Upon termination, view vital stats like name, PID, execution time, and wait time for all tasks.
+Dynamic Code Integration: Seamlessly run your executables in SimpleShell by using the provided dummy_main.h.
 
-Getting Started:
-Prerequisites:
+Prerequisites
+
+Ensure you have the following installed:
 
     GCC Compiler
-    A Unix-like environment or Windows Subsystem for Linux (WSL) if on Windows
+    A Unix-like environment (For Windows users, WSL is recommended)
 
-Installation:
+Setup and Usage
 
     Clone the Repository:
-
-    bash
-
-git clone https://github.com/nugget-cloud/scheduler.git
+    git clone https://github.com/nugget-cloud/scheduler.git
 
 Navigate to the Project Directory:
-
-bash
-
-cd scheduler
+     
+    cd scheduler
 
 Compile the Source Code:
 
-bash
-
     gcc scheduler.c -o simpleshell
 
-Usage:
+Start SimpleShell:
 
-    Start SimpleShell:
+    ./simpleshell
 
-    bash
+Input the Desired Time Slice (in milliseconds):
 
-./simpleshell
+    Enter time slice (in milliseconds): [Enter your chosen value here]
+    Submit a Job:
 
-Provide the Time Slice (in milliseconds):
+For programs without priority:
 
-less
+      SimpleShell$ submit ./[name_of_your_program]
 
-Enter time slice (in milliseconds): [your_value]
+For programs with priority (from 1-4):
 
-Submit a Job:
-For a program without priority:
-
-css
-
-SimpleShell$ submit ./[your_program]
-
-For a program with a priority:
-
-css
-
-SimpleShell$ submit ./[your_program] [priority_value]
-
-Note: Priority values can range from 1-4.
+    SimpleShell$ submit ./[name_of_your_program] [priority_value]
 
 Terminate the Shell:
 
@@ -69,24 +51,19 @@ shell
 
     SimpleShell$ exit
 
-    View the Process Statistics: Upon termination, the shell will display statistics for the submitted jobs.
+After termination, the shell will automatically display the statistics for all the submitted jobs.
 
-Integrating Your Executable:
+Integrate Your Executable
 
-To run your program under SimpleShell:
-
-    Ensure your program doesn't have any blocking calls, such as scanf, sleep, etc.
-
-    Add the following code snippet at the top, immediately after any includes for stdio.h:
+If you wish to run your program under SimpleShell:
+Make sure it doesn't contain blocking calls like scanf, sleep, etc.
+Include this snippet at the beginning of your program, right after any stdio.h inclusions:
 
     c
-
-#include "dummy_main.h"
+    #include "dummy_main.h"
 
 Compile your program:
 
-bash
+      gcc [name_of_your_program].c -o [name_of_your_program]
 
-gcc your_program.c -o your_program
-
-Use the submit command within SimpleShell to run your executable.
+Now, you can use the submit command in SimpleShell to execute your program.
